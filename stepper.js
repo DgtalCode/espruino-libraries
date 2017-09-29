@@ -25,6 +25,10 @@ var Stepper = function(pins, opts) {
  * @param {float} power - Ñêâàæíîñòü ØÈÌ îò 0 äî 1
  */
 Stepper.prototype.hold = function(power) {
+  if(power == 1)
+    power=0;
+  else
+    power=1;
   
   if (this._intervalId !== null) {
     clearInterval(this._intervalId);
@@ -34,11 +38,6 @@ Stepper.prototype.hold = function(power) {
   if (typeof(power) === 'undefined') {
     power = this._holdPower;
   }
-
-  if(power == 1)
-    power=0;
-  else
-    power=1;
   
   analogWrite(this._pins.enable, power);
 };
