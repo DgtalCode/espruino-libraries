@@ -66,7 +66,6 @@ Stepper.prototype.rotate = function(steps, callback) {
       digitalPulse(self._pins.step, 1, 1);
       steps--;
     } else {
-      self.hold();
       if (callback) {
         callback();
       }
