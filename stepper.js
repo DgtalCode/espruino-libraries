@@ -35,6 +35,11 @@ Stepper.prototype.hold = function(power) {
     power = this._holdPower;
   }
 
+  if(power == 1)
+    power=0;
+  else
+    power=1;
+  
   analogWrite(this._pins.enable, power);
 };
 /**
@@ -43,7 +48,6 @@ Stepper.prototype.hold = function(power) {
  * @param {function} callback - ôóíêöèÿ, âûïîëíÿåìàÿ ïîñëå ïðîâîðîòà âàëà
  */
 Stepper.prototype.rotate = function(steps, callback) {
-  this.hold(0);
 
   if (steps === undefined) {
     steps = 1;
