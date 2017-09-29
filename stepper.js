@@ -39,7 +39,7 @@ Stepper.prototype.hold = function(power) {
     power = this._holdPower;
   }
   
-  analogWrite(this._pins.enable, power);
+  analogWrite(this._pins.enable, 0);
 };
 /**
  * Ïðîâîðà÷èâàåò âàë íà step øàãîâ, ïîñëå ÷åãî âûïîëíÿåò callback.
