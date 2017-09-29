@@ -1,8 +1,8 @@
 /**
- * Конструктор объекта stepper
+ * ГЉГ®Г­Г±ГІГ°ГіГЄГІГ®Г° Г®ГЎГєГҐГЄГІГ  stepper
  * @constructor
- * @param {object} pins - объект со свойствами step, direction, enable типа Pin
- * @param {Object} opts - объект со свойствами pps (скорость) и holdPower (pwm)
+ * @param {object} pins - Г®ГЎГєГҐГЄГІ Г±Г® Г±ГўГ®Г©Г±ГІГўГ Г¬ГЁ step, direction, enable ГІГЁГЇГ  Pin
+ * @param {Object} opts - Г®ГЎГєГҐГЄГІ Г±Г® Г±ГўГ®Г©Г±ГІГўГ Г¬ГЁ pps (Г±ГЄГ®Г°Г®Г±ГІГј) ГЁ holdPower (pwm)
  */
 var Stepper = function(pins, opts) {
   this._pins = pins;
@@ -21,8 +21,8 @@ var Stepper = function(pins, opts) {
 };
 
 /**
- * Регулирует ШИМ подачи питания на двигатель
- * @param {float} power - Скважность ШИМ от 0 до 1
+ * ГђГҐГЈГіГ«ГЁГ°ГіГҐГІ ГГ€ГЊ ГЇГ®Г¤Г Г·ГЁ ГЇГЁГІГ Г­ГЁГї Г­Г  Г¤ГўГЁГЈГ ГІГҐГ«Гј
+ * @param {float} power - Г‘ГЄГўГ Г¦Г­Г®Г±ГІГј ГГ€ГЊ Г®ГІ 0 Г¤Г® 1
  */
 Stepper.prototype.hold = function(power) {
   
@@ -38,12 +38,12 @@ Stepper.prototype.hold = function(power) {
   analogWrite(this._pins.enable, power);
 };
 /**
- * Проворачивает вал на step шагов, после чего выполняет callback.
- * @param {number} steps - количество шагов. При отрицательном значении происходит движение назад
- * @param {function} callback - функция, выполняемая после проворота вала
+ * ГЏГ°Г®ГўГ®Г°Г Г·ГЁГўГ ГҐГІ ГўГ Г« Г­Г  step ГёГ ГЈГ®Гў, ГЇГ®Г±Г«ГҐ Г·ГҐГЈГ® ГўГ»ГЇГ®Г«Г­ГїГҐГІ callback.
+ * @param {number} steps - ГЄГ®Г«ГЁГ·ГҐГ±ГІГўГ® ГёГ ГЈГ®Гў. ГЏГ°ГЁ Г®ГІГ°ГЁГ¶Г ГІГҐГ«ГјГ­Г®Г¬ Г§Г­Г Г·ГҐГ­ГЁГЁ ГЇГ°Г®ГЁГ±ГµГ®Г¤ГЁГІ Г¤ГўГЁГ¦ГҐГ­ГЁГҐ Г­Г Г§Г Г¤
+ * @param {function} callback - ГґГіГ­ГЄГ¶ГЁГї, ГўГ»ГЇГ®Г«Г­ГїГҐГ¬Г Гї ГЇГ®Г±Г«ГҐ ГЇГ°Г®ГўГ®Г°Г®ГІГ  ГўГ Г«Г 
  */
 Stepper.prototype.rotate = function(steps, callback) {
-  this.hold(1);
+  this.hold(0);
 
   if (steps === undefined) {
     steps = 1;
@@ -71,7 +71,7 @@ Stepper.prototype.rotate = function(steps, callback) {
 };
 
 /**
- * Регулирует количество шагов в секунду
+ * ГђГҐГЈГіГ«ГЁГ°ГіГҐГІ ГЄГ®Г«ГЁГ·ГҐГ±ГІГўГ® ГёГ ГЈГ®Гў Гў Г±ГҐГЄГіГ­Г¤Гі
  */
 Stepper.prototype.pps = function(pps) {
   if (pps === undefined) return this._pps;
@@ -80,7 +80,7 @@ Stepper.prototype.pps = function(pps) {
 };
 
 /**
- * Переустанавливает значение удержания вала заданное при инициализации
+ * ГЏГҐГ°ГҐГіГ±ГІГ Г­Г ГўГ«ГЁГўГ ГҐГІ Г§Г­Г Г·ГҐГ­ГЁГҐ ГіГ¤ГҐГ°Г¦Г Г­ГЁГї ГўГ Г«Г  Г§Г Г¤Г Г­Г­Г®ГҐ ГЇГ°ГЁ ГЁГ­ГЁГ¶ГЁГ Г«ГЁГ§Г Г¶ГЁГЁ
  */
 Stepper.prototype.holdPower = function(holdPower) {
   if (holdPower === undefined) return this._holdPower;
@@ -89,9 +89,9 @@ Stepper.prototype.holdPower = function(holdPower) {
 };
 
 /**
- * Экспорт функции создания объекта Stepper
- * @param {object} pins - объект со свойствами step, direction, enable типа Pin
- * @param {Object} opts - объект со свойствами pps (скорость) и holdPower (pwm)
+ * ГќГЄГ±ГЇГ®Г°ГІ ГґГіГ­ГЄГ¶ГЁГЁ Г±Г®Г§Г¤Г Г­ГЁГї Г®ГЎГєГҐГЄГІГ  Stepper
+ * @param {object} pins - Г®ГЎГєГҐГЄГІ Г±Г® Г±ГўГ®Г©Г±ГІГўГ Г¬ГЁ step, direction, enable ГІГЁГЇГ  Pin
+ * @param {Object} opts - Г®ГЎГєГҐГЄГІ Г±Г® Г±ГўГ®Г©Г±ГІГўГ Г¬ГЁ pps (Г±ГЄГ®Г°Г®Г±ГІГј) ГЁ holdPower (pwm)
  */
 exports.connect = function(pins, opts) {
   return new Stepper(pins, opts);
