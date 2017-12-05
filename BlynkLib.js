@@ -180,7 +180,7 @@ if (isEspruino()) {
           break;
         case 'dr':
           var pin = Pin(values[1]);
-          self.blynk.sendMsg(MsgType.HW, ['dw', values[1], digitalRead(pin)]);
+          self.blynk.sendMsg(MsgType.HW, ['dw', values[1], digitalRead(P0)]);
           break;
         case 'aw':
           var pin = Pin(values[1]);
