@@ -168,7 +168,7 @@ if (isEspruino()) {
       self.blynk = blynk;
     };
     this.process = function(values) {
-      console.log("      " + values);
+      console.log("  kek lol    " + values);
       switch(values[0]) {
         case 'pm':
           // TODO
