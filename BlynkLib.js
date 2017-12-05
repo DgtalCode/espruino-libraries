@@ -168,6 +168,7 @@ if (isEspruino()) {
       self.blynk = blynk;
     };
     this.process = function(values) {
+      consle.log("         " + values);
       switch(values[0]) {
         case 'pm':
           // TODO
