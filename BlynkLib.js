@@ -80,11 +80,11 @@ var BlynkState = {
 
 if (isBrowser()) {
 	var bl_browser = require('https://github.com/vshymanskyy/blynk-library-js/blob/master/blynk-browser.js');
-	var events = require('https://github.com/Gozala/events/blob/master/events.js');
+	var events = require('events');
 	var util = require('util');
 } else if (isNode()) {
 	var bl_node = require('https://github.com/vshymanskyy/blynk-library-js/blob/master/blynk-node.js');
-	var events = require('https://github.com/Gozala/events/blob/master/events.js');
+	var events = require('events');
 	var util = require('util');
 }
 
