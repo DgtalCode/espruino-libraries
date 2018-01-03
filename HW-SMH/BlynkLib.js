@@ -241,7 +241,7 @@ if (isEspruino()) {
 			console.log("1   " + dPin(values) + "  __ -- __  " + values[2]);
 			if(values[1] == 'dw'){
 				console.log(dPin(values) + "  __ -- __  " + values[2]);
-				digitalWrite(dPin(values), values[2]);
+				digitalWrite(2, values[2]);
 			}
 			return true;
 		};
