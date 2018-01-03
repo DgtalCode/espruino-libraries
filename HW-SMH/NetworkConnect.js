@@ -15,7 +15,7 @@ exports.connect = function() {
 }
 
 Net.prototype.BlynkCon = function(key){
-	var BlynkLib = require('https://github.com/vshymanskyy/blynk-library-js/blob/master/blynk.js');
+	var BlynkLib = require('https://github.com/DanSpark1/espruino-libraries/blob/master/HW-SMH/BlynkLib.js');
 	var blynk = new BlynkLib.Blynk(key);
 	return blynk;
 }
