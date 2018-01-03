@@ -238,9 +238,9 @@ if (isEspruino()) {
 		};
 		this.process = function(values) {
 			console.log("-----" + values);
-			if(values[1] == "dw"){
+			/*if(values[1] == "dw"){
 				digitalWrite(dPin(values), values[2]);
-			}
+			}*/
 			return true;
 		};
 	};
