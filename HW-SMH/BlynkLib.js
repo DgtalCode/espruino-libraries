@@ -165,7 +165,7 @@ if (isEspruino()) {
 	};
 
 	function dPin(values) {
-		switch (values[1]) {
+		switch (parseInt(values[1])) {
 		case 0:
 			return P0;
 			break;
@@ -238,9 +238,8 @@ if (isEspruino()) {
 		};
 		this.process = function(values) {
 			console.log("-----" + values);
-			console.log("1   " + dPin(values) + "  __ -- __  " + values[2]);
+			console.log("1   " + parseString(dPin(values)) + "  __ -- __  " + values[2]);
 			if(values[0] == 'dw'){
-				console.log(dPin(values) + "  __ -- __  " + values[2]);
 				digitalWrite(dPin(values), values[2]);
 			}
 			return true;
