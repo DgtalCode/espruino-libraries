@@ -237,8 +237,6 @@ if (isEspruino()) {
 			self.blynk = blynk;
 		};
 		this.process = function(values) {
-			console.log("-----" + values);
-			console.log("1   " + dPin(values) + "  __ -- __  " + values[2]);
 			if(values[0] == 'dw'){
 				digitalWrite(dPin(values), values[2]);
 			}
@@ -248,7 +246,7 @@ if (isEspruino()) {
 			else if(values[0] == 'dr'){
 				self.blynk.sendMsg(MsgType.HW, ['dw', parseInt(values[1]), digitalRead(dPin(values))]);
 			}
-			else if(values[1] == 'ar'){
+			else if(values[0] == 'ar'){
 				self.blynk.sendMsg(MsgType.HW, ['aw', parseInt(values[1]), 4095 * analogRead(aPin(values))]);
 			}
 			return true;
