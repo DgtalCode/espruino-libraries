@@ -209,7 +209,7 @@ if (isEspruino()) {
 	}
 
 	function aPin(values) {
-		switch (values[1]) {
+		switch (parseInt(values[1])) {
 		case 0:
 			return A0;
 			break;
