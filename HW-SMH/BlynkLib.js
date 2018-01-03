@@ -79,11 +79,11 @@ var BlynkState = {
 };
 
 if (isBrowser()) {
-	var bl_browser = require('https://github.com/vshymanskyy/blynk-library-js/blob/master/blynk-browser.js');
+	var bl_browser = require('https://github.com/DanSpark1/espruino-libraries/blob/master/HW-SMH/blynk-browser.js');
 	var events = require('events');
 	var util = require('util');
 } else if (isNode()) {
-	var bl_node = require('https://github.com/vshymanskyy/blynk-library-js/blob/master/blynk-node.js');
+	var bl_node = require('blynk-node');
 	var events = require('events');
 	var util = require('util');
 }
