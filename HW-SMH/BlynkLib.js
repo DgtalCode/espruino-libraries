@@ -242,6 +242,15 @@ if (isEspruino()) {
 			if(values[0] == 'dw'){
 				digitalWrite(dPin(values), values[2]);
 			}
+			else if(values[0] == 'aw'){
+				analogWrite(aPin(values), values[2]);
+			}
+			else if(values[0] == 'dr'){
+				self.blynk.sendMsg(MsgType.HW, ['dw', parseInt(values[1]), digitalRead(dPin(values))]);
+			}
+			else if(values[1] == 'ar'){
+				self.blynk.sendMsg(MsgType.HW, ['aw', parseInt(values[1]), 4095 * analogRead(aPin(values))]);
+			}
 			return true;
 		};
 	};
