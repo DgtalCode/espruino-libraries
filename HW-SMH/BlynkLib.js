@@ -277,7 +277,8 @@ if (isEspruino()) {
 			}
 			if (values[0] == 'ar') {
 				self.blynk.sendMsg(MsgType.HW, [ 'dw', parseInt(values[1]),
-						4095 * analogRead(Pin(values)) ]);
+						4095 * analogRead(A1) ]);
+				console.log(4095 * analogRead(A1))
 			}
 			return true;
 		};
