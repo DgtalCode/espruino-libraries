@@ -207,21 +207,27 @@ if (isEspruino()) {
 			break;
 		case 14:
 			return A0;
+			console.log('A0');
 			break;
 		case 15:
 			return A1;
+			console.log('A1');
 			break;
 		case 16:
 			return A2;
+			console.log('A2');
 			break;
 		case 17:
 			return A3;
+			console.log('A3');
 			break;
 		case 18:
 			return A4;
+			console.log('A4');
 			break;
 		case 19:
 			return A5;
+			console.log('A5');
 			break;
 		}
 	}
