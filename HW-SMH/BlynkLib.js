@@ -80,11 +80,11 @@ var BlynkState = {
 
 if (isBrowser()) {
 	var bl_browser = require('https://github.com/DanSpark1/espruino-libraries/blob/master/HW-SMH/blynk-browser.js');
-	var events = require('events');
+	var events = require('https://github.com/Gozala/events/blob/master/events.js');
 	var util = require('util');
 } else if (isNode()) {
 	var bl_node = require('https://github.com/DanSpark1/espruino-libraries/blob/master/HW-SMH/blynk-node.js');
-	var events = require('events');
+	var events = require('https://github.com/Gozala/events/blob/master/events.js');
 	var util = require('util');
 }
 
