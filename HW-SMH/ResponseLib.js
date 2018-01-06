@@ -64,11 +64,11 @@ RespCheck.prototype.listen = function() {
 		
 		//для настольной лампы
 		//вкючение
-		if (data == "LampOn") {
+		if (data == "LampOff") {
 			lamp.turnOff()
 		}
 		//выключение
-		if (data == "LampOff")
+		if (data == "LampOn")
 			lamp.turnOn();
 		//переключение
 		if (data == "LampTgl")
