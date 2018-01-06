@@ -164,7 +164,7 @@ if (isEspruino()) {
 		};
 	};
 
-	function dPin(values) {
+	function Pin(values) {
 		switch (parseInt(values[1])) {
 		case 0:
 			return P0;
@@ -205,6 +205,24 @@ if (isEspruino()) {
 		case 13:
 			return P13;
 			break;
+		case 14:
+			return A0;
+			break;
+		case 15:
+			return A1;
+			break;
+		case 16:
+			return A2;
+			break;
+		case 17:
+			return A3;
+			break;
+		case 18:
+			return A4;
+			break;
+		case 19:
+			return A5;
+			break;
 		}
 	}
 
@@ -238,17 +256,22 @@ if (isEspruino()) {
 		};
 		this.process = function(values) {
 			console.log("111111111    " + values);
-			if(values[0] == 'dw'){
-				digitalWrite(dPin(values), values[2]);
+			if (values[0] == 'dw') {
+				if (Pin(values) <= 13)
+					digitalWrite(Pin(values), values[2]);
+				else if (Pin(values) > 13)
+					analogWrite(Pin(values), values[2]);
 			}
-			if(values[0] == 'aw'){
+			if (values[0] == 'aw') {
 				analogWrite(A0, values[2]);
 			}
-			if(values[0] == 'dr'){
-				self.blynk.sendMsg(MsgType.HW, ['dw', parseInt(values[1]), digitalRead(dPin(values))]);
+			if (values[0] == 'dr') {
+				self.blynk.sendMsg(MsgType.HW, [ 'dw', parseInt(values[1]),
+						digitalRead(Pin(values)) ]);
 			}
-			if(values[0] == 'ar'){
-				self.blynk.sendMsg(MsgType.HW, ['aw', parseInt(values[1]), 4095 * analogRead(aPin(values))]);
+			if (values[0] == 'ar') {
+				self.blynk.sendMsg(MsgType.HW, [ 'aw', parseInt(values[1]),
+						4095 * analogRead(aPin(values)) ]);
 			}
 			return true;
 		};
@@ -270,24 +293,13 @@ if (isEspruino()) {
  * Boards
  */
 
-/*var BoardDummy = function() {
-	this.init = function(blynk) {
-	};
-	this.process = function(values) {
-		switch (values[0]) {
-		case 'pm':
-			return true;
-		case 'dw':
-		case 'dr':
-		case 'aw':
-		case 'ar':
-			console.log("No direct pin operations available.");
-			console.log("Maybe you need to install mraa or onoff modules?");
-			return true;
-		}
-	};
-};
-*/
+/*
+ * var BoardDummy = function() { this.init = function(blynk) { }; this.process =
+ * function(values) { switch (values[0]) { case 'pm': return true; case 'dw':
+ * case 'dr': case 'aw': case 'ar': console.log("No direct pin operations
+ * available."); console.log("Maybe you need to install mraa or onoff
+ * modules?"); return true; } }; };
+ */
 /*
  * Blynk
  */
