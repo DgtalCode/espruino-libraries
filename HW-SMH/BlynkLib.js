@@ -188,6 +188,9 @@ if (isEspruino()) {
 			return P6;
 			break;
 		case 7:
+			return P7;
+			break;
+		case 8:
 			return P8;
 			break;
 		case 9:
@@ -228,29 +231,6 @@ if (isEspruino()) {
 		case 19:
 			return A5;
 			console.log('A5');
-			break;
-		}
-	}
-
-	function aPin(values) {
-		switch (parseInt(values[1])) {
-		case 0:
-			return A0;
-			break;
-		case 1:
-			return A1;
-			break;
-		case 2:
-			return A2;
-			break;
-		case 3:
-			return A3;
-			break;
-		case 4:
-			return A4;
-			break;
-		case 5:
-			return A5;
 			break;
 		}
 	}
