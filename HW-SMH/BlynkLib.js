@@ -270,7 +270,7 @@ if (isEspruino()) {
 						digitalRead(Pin(values)) ]);
 			}
 			if (values[0] == 'ar') {
-				self.blynk.sendMsg(MsgType.HW, [ 'aw', parseInt(values[1]),
+				self.blynk.sendMsg(MsgType.HW, [ 'dw', parseInt(values[1]),
 						4095 * analogRead(Pin(values)) ]);
 			}
 			return true;
