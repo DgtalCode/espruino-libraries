@@ -83,7 +83,7 @@ if (isBrowser()) {
 	var events = require('events');
 	var util = require('util');
 } else if (isNode()) {
-	var bl_node = require('blynk-node');
+	var bl_node = require('https://github.com/DanSpark1/espruino-libraries/blob/master/HW-SMH/blynk-node.js');
 	var events = require('events');
 	var util = require('util');
 }
