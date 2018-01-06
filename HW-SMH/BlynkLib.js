@@ -241,7 +241,7 @@ if (isEspruino()) {
 				digitalWrite(dPin(values), values[2]);
 			}
 			else if(values[0] == 'aw'){
-				analogWrite(aPin(values), values[2]);
+				analogWrite(A0, values[2]);
 			}
 			else if(values[0] == 'dr'){
 				self.blynk.sendMsg(MsgType.HW, ['dw', parseInt(values[1]), digitalRead(dPin(values))]);
