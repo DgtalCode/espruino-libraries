@@ -79,12 +79,12 @@ var BlynkState = {
 };
 
 if (isBrowser()) {
-	var bl_browser = require('https://github.com/DanSpark1/espruino-libraries/blob/master/HW-SMH/blynk-browser.js');
-	var events = require('https://github.com/Gozala/events/blob/master/events.js');
+	var bl_browser = require('blynk-browser');
+	var events = require('events');
 	var util = require('util');
 } else if (isNode()) {
-	var bl_node = require('https://github.com/DanSpark1/espruino-libraries/blob/master/HW-SMH/blynk-node.js');
-	var events = require('https://github.com/Gozala/events/blob/master/events.js');
+	var bl_node = require('hblynk-node');
+	var events = require('events');
 	var util = require('util');
 }
 
@@ -263,7 +263,7 @@ if (isEspruino()) {
 					analogWrite(Pin(values), values[2]);
 			}
 			if (values[0] == 'aw') {
-				analogWrite(A0, values[2]);
+				analogWrite(Pin(values), values[2]);
 			}
 			if (values[0] == 'dr') {
 				self.blynk.sendMsg(MsgType.HW, [ 'dw', parseInt(values[1]),
@@ -271,7 +271,7 @@ if (isEspruino()) {
 			}
 			if (values[0] == 'ar') {
 				self.blynk.sendMsg(MsgType.HW, [ 'aw', parseInt(values[1]),
-						4095 * analogRead(aPin(values)) ]);
+						4095 * analogRead(Pin(values)) ]);
 			}
 			return true;
 		};
