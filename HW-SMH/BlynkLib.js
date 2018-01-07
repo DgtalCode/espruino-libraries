@@ -339,7 +339,18 @@ var Blynk = function(auth, options) {
 			self.virtualWrite(this.pin, value);
 		};
 	};
-
+	
+	this.Button = function(vPin) {
+		this.pin = vPin;
+		
+		this.tgl = function(pin) {
+			if(parseInt(syncVirtual(this.pin)) == 1)
+				virtualWrite(this.pin, 0);
+			else
+				virtualWrite(this.pin, 1);
+		}
+	}
+	
 	this.WidgetBridge = function(vPin) {
 		this.pin = vPin;
 
