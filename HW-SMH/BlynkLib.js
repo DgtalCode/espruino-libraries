@@ -349,6 +349,10 @@ var Blynk = function(auth, options) {
 			else
 				virtualWrite(this.pin, 1);
 		}
+		
+		this.on = function(vPin, callback) {
+			vPin.on('write', callback);
+		}
 	}
 	
 	this.WidgetBridge = function(vPin) {
