@@ -314,8 +314,9 @@ var ESP8266 = {
     });
   },
   'CIPSTATUS': function() {
-    at.cmd('AT+CIPSTATUS\r\n', 1000, function(){
+    at.cmd('AT+CIPSTATUS\r\n', 1000, function(d){
       console.log('hi__');
+      console.log(d);
     });
   }
 };
