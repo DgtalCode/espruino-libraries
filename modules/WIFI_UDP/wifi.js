@@ -9,5 +9,5 @@ var ESP = function(SSID, PSWD, UDP_HOST, UDP_PORT) {
 
 exports.setup = function(usart) {
     ESP.at = require('AT');
-    return new ESP;
+    return new ESP(1,1,1,1);
 }
