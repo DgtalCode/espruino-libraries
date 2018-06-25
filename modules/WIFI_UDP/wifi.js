@@ -1,4 +1,4 @@
-export class ESP {
+class ESP {
   constructor(SSID, PSWD, UDP_HOST, UDP_PORT) {
     this.SSID = SSID;
     this.PSWD = PSWD;
