@@ -13,6 +13,8 @@ This function creates the ESP object. It needs to pass:
 This function connects the Espruino Board to the network
 ### ESP.udp_start(socket).then( d => { ... })
 This feature connects the Espruino Board to another device. You need a socket number to access this connection. The socket number can range from 0 to 4. You can connect to multiple devices on different sockets.
+### ESP.close(socket).then(d => { ... })
+This function closes the specified socket
 ### ESP.send(socket, message, message2, message3, ...).then( d => { ... })
 This function sends a message (or multiple) to a specific socket. All passed function arguments will be converted to strings.
 ### ESP.on('msg', message => { ... })
