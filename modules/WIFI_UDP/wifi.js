@@ -82,6 +82,15 @@ ESP.prototype._On = function() {
   this.emit('msg', "NU BLYAT");
 }
 
+ESP.prototype.close = function(socket) {
+  return new Promise((resolve, reject) => {
+    ESP.cmd("AT+CIPCLOSE=" + socket).then(d => {
+      console.log("Socket " + socket + " closed");
+      resolve("Closed");
+    });
+  });
+}
+
 //setup
 exports.setup = function(SSID, PSWD, UDP_HOST, UDP_PORT, SERIAL) {
 
