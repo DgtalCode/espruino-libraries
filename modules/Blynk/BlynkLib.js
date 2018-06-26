@@ -79,11 +79,11 @@ var BlynkState = {
 };
 
 if (isBrowser()) {
-	var bl_browser = require('blynk-browser');
+	var bl_browser = require('https://github.com/vshymanskyy/blynk-library-js/blob/master/blynk-browser.js');
 	var events = require('events');
 	var util = require('util');
 } else if (isNode()) {
-	var bl_node = require('hblynk-node');
+	var bl_node = require('https://github.com/vshymanskyy/blynk-library-js/blob/master/blynk-node.js');
 	var events = require('events');
 	var util = require('util');
 }
@@ -164,8 +164,8 @@ if (isEspruino()) {
 		};
 	};
 
-	function Pin(values) {
-		switch (parseInt(values[1])) {
+	function dPin(values) {
+		switch (values[1]) {
 		case 0:
 			return P0;
 			break;
@@ -188,9 +188,6 @@ if (isEspruino()) {
 			return P6;
 			break;
 		case 7:
-			return P7;
-			break;
-		case 8:
 			return P8;
 			break;
 		case 9:
@@ -208,22 +205,27 @@ if (isEspruino()) {
 		case 13:
 			return P13;
 			break;
-		case 14:
+		}
+	}
+
+	function aPin(values) {
+		switch (values[1]) {
+		case 0:
 			return A0;
 			break;
-		case 15:
+		case 1:
 			return A1;
 			break;
-		case 16:
+		case 2:
 			return A2;
 			break;
-		case 17:
+		case 3:
 			return A3;
 			break;
-		case 18:
+		case 4:
 			return A4;
 			break;
-		case 19:
+		case 5:
 			return A5;
 			break;
 		}
@@ -235,23 +237,9 @@ if (isEspruino()) {
 			self.blynk = blynk;
 		};
 		this.process = function(values) {
-			if (values[0] == 'dw') {
-				if (Pin(values) <= 13)
-					digitalWrite(Pin(values), values[2]);
-				else if (Pin(values) > 13)
-					analogWrite(Pin(values), values[2]);
-			}
-			if (values[0] == 'aw') {
-				analogWrite(Pin(values), values[2]);
-			}
-			if (values[0] == 'dr') {
-				self.blynk.sendMsg(MsgType.HW, [ 'dw', parseInt(values[1]),
-						digitalRead(Pin(values)) ]);
-			}
-			if (values[0] == 'ar') {
-				self.blynk.sendMsg(MsgType.HW, [ 'aw', parseInt(values[1]),
-						Math.round(1000 * analogRead(Pin(values))) ]);
-				Math.round(1000 * analogRead(Pin(values)))
+			console.log("-----" + values);
+			if(values[1] == "dw"){
+				digitalWrite(dPin(values), values[2]);
 			}
 			return true;
 		};
@@ -273,12 +261,24 @@ if (isEspruino()) {
  * Boards
  */
 
-
-  var BoardDummy = function() { this.init = function(blynk) { }; this.process =
-  function(values) { switch (values[0]) { case 'pm': return true; case 'dw':
-  case 'dr': case 'aw': case 'ar': console.log("No direct pin operations available."); 
-  console.log("Maybe you need to install mraa or onoff modules?"); return true; } }; };
- 
+/*var BoardDummy = function() {
+	this.init = function(blynk) {
+	};
+	this.process = function(values) {
+		switch (values[0]) {
+		case 'pm':
+			return true;
+		case 'dw':
+		case 'dr':
+		case 'aw':
+		case 'ar':
+			console.log("No direct pin operations available.");
+			console.log("Maybe you need to install mraa or onoff modules?");
+			return true;
+		}
+	};
+};
+*/
 /*
  * Blynk
  */
@@ -339,22 +339,7 @@ var Blynk = function(auth, options) {
 			self.virtualWrite(this.pin, value);
 		};
 	};
-	
-	this.Button = function(vPin) {
-		this.pin = vPin;
-		
-		this.tgl = function(pin) {
-			if(parseInt(syncVirtual(this.pin)) == 1)
-				virtualWrite(this.pin, 0);
-			else
-				virtualWrite(this.pin, 1);
-		}
-		
-		this.on = function(vPin, callback) {
-			vPin.on('write', callback);
-		}
-	}
-	
+
 	this.WidgetBridge = function(vPin) {
 		this.pin = vPin;
 
