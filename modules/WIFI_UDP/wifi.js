@@ -14,7 +14,6 @@ var ESP = function(SSID, PSWD, UDP_HOST, UDP_PORT, SERIAL) {
     if (buf.indexOf("+IPD") != -1) {
         var message = buf.split("+IPD")[1];
         message = message.split(":")[1];
-        console.log(message);
         buf = "";
         this.emit('msg', message);
     }
@@ -25,7 +24,6 @@ var ESP = function(SSID, PSWD, UDP_HOST, UDP_PORT, SERIAL) {
 ESP.prototype.connect = function() {
   return new Promise((resolve, reject) => {
     ESP.cmd("AT+CWJAP=\"" + this.SSID + "\",\"" + this.PSWD + "\"").then(d => {
-      console.log("Connected");
       resolve("Connected");
     });
   });
@@ -37,13 +35,10 @@ ESP.prototype.connect = function() {
 ESP.prototype.udp_start = function(socket) {
   return new Promise((resolve, reject) => {
     ESP.cmd("AT+CWMODE=3").then(d => {
-      console.log("CWMODE=3");
       return ESP.cmd("AT+CIPMUX=1")
     }).then(d => {
-      console.log("CIPMUX=1");
       return ESP.cmd("AT+CIPSTART=" + socket + ",\"UDP\",\"" + this.UDP_HOST + "\"," + this.UDP_PORT + "," + this.UDP_PORT + ",0")
     }).then(d => {
-      console.log("UDP Connected");
       resolve("UDP Connected");
     });
   });
@@ -78,14 +73,9 @@ ESP.prototype.send = function(socket) {
   send(msg, socket);
 };
 
-ESP.prototype._On = function() {
-  this.emit('msg', "NU BLYAT");
-}
-
 ESP.prototype.close = function(socket) {
   return new Promise((resolve, reject) => {
     ESP.cmd("AT+CIPCLOSE=" + socket).then(d => {
-      console.log("Socket " + socket + " closed");
       resolve("Closed");
     });
   });
